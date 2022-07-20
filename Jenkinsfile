@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('git checkout') {
+        stage('Git checkout') {
             steps {
-                echo 'Git checkout jenkins'
+                echo 'Git checkout code'
                 sh 'pwd'
                 sh 'ls'
             }
         }
-            stage('build') {
+            stage('Build') {
               steps {
                 echo 'Building'
                   sh 'mvn -B -DskipTests clean package'
@@ -21,7 +21,7 @@ pipeline {
                   sh 'mvn test'
             }
         }
-            stage('SonarQube') {
+            stage('SonarQube_analysis') {
               steps {
                 echo 'Sonar'
             }
@@ -29,7 +29,6 @@ pipeline {
             stage('Deploy to Dev') {
               steps {
                 echo 'Deployment'
-                  sh './jenkins/scripts/deliver.sh'
             }
         }
     }
