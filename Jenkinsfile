@@ -29,6 +29,7 @@ pipeline {
             stage('Deploy to Dev') {
               steps {
                 echo 'Deployment'
+                  sh './jenkins/scripts/deliver.sh'
             }
         }
     }
