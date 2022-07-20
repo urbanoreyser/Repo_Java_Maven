@@ -1,32 +1,28 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'maven:3-alpine'
+        }
+    }
     stages {
-        stage('git checkout') {
+        stage('Build') {
             steps {
-                echo 'Git checkout jenkins'
-                sh 'pwd'
-                sh 'ls'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-            stage('build') {
-              steps {
-                echo 'Building'
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
-             stage('Unit_testing') {
-              steps {
-                echo 'Testing'
-            }
-        }
-            stage('SonarQube') {
-              steps {
-                echo 'Sonar'
-            }
-        }
-            stage('Deploy to Dev') {
-              steps {
-                echo 'Deployment'
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
