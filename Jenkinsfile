@@ -18,6 +18,7 @@ pipeline {
              stage('Unit_testing') {
               steps {
                 echo 'Testing'
+                  sh 'mvn test'
             }
         }
             stage('SonarQube') {
