@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                echo 'Git checkout code'
+                echo 'Git checkout'
                 sh 'pwd'
                 sh 'ls'
             }
