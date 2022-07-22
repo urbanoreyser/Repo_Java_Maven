@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Git checkout') {
+        stage('Git checkout code') {
             steps {
                 echo 'Git checkout'
                 sh 'pwd'
