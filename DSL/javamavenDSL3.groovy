@@ -2,8 +2,8 @@ job('Java Maven App DSL 3') {
     description('Java Maven App con DSL para el curso de Jenkins')
     scm {
         git('https://github.com/urbanoreyser/Repo_Java_Maven.git', 'main') { node ->
-            node / gitConfigName('macloujulian')
-            node / gitConfigEmail('macloujulian@gmail.com')
+            node / gitConfigName('devops')
+            node / gitConfigEmail('devops@gmail.com')
         }
     }
     triggers {
